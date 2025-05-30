@@ -1,66 +1,75 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+## Deskripsi Website
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+**Buku Tamu Digital** adalah aplikasi web berbasis Laravel yang dirancang untuk memudahkan pencatatan data tamu secara digital di lingkungan instansi, kantor, sekolah, atau organisasi. Website ini memungkinkan tamu untuk mengisi data diri, keperluan kunjungan, serta mengambil foto secara langsung melalui webcam. Seluruh data yang masuk akan tersimpan secara otomatis ke dalam database dan dapat dikelola oleh admin melalui dashboard yang aman dan mudah digunakan.
 
-## About Laravel
+Aplikasi ini mendukung proses digitalisasi administrasi tamu, mengurangi penggunaan kertas, serta meningkatkan efisiensi dan keamanan data. Admin dapat melakukan pencarian, filter berdasarkan tanggal, mencetak data tamu, dan menghapus data yang tidak diperlukan. Sistem autentikasi juga diterapkan agar hanya admin yang berhak dapat mengakses fitur manajemen data tamu.
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+---
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+## Penjelasan Kode
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+### Struktur Utama
 
-## Learning Laravel
+-   **Frontend (Tamu):**
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+    -   Halaman form tamu (`resources/views/guest/create.blade.php`) menggunakan Bootstrap untuk tampilan responsif dan WebcamJS untuk fitur ambil foto.
+    -   Field yang diisi: Nama, Email, No. Telepon, Keperluan, dan Foto. Validasi dilakukan di sisi server dan client.
+    -   Data dikirim ke route `guest.store` untuk diproses oleh `GuestController` dan disimpan ke database.
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+-   **Backend (Admin):**
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+    -   Admin login menggunakan autentikasi Laravel bawaan (`Auth`).
+    -   Dashboard admin (`resources/views/admin/guests/index.blade.php`) menampilkan tabel data tamu lengkap dengan foto, nama, email, telepon, pesan, tanggal, dan aksi hapus.
+    -   Fitur pencarian, filter tanggal, dan cetak data tamu tersedia di dashboard.
+    -   Semua route diatur pada `routes/web.php` dengan middleware `auth` untuk membedakan akses tamu dan admin.
 
-## Laravel Sponsors
+-   **Model & Database:**
+    -   Model `Guest` menyimpan data tamu, dengan migrasi database pada `database/migrations/2025_05_01_135616_create_guests_table.php`.
+    -   Data foto tamu disimpan di folder `public/photos` dan path-nya dicatat di database.
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+### Alur Kerja
 
-### Premium Partners
+1. Tamu mengisi form dan mengambil foto.
+2. Data dikirim ke server dan divalidasi.
+3. Jika valid, data disimpan ke database dan foto disimpan di server.
+4. Admin login untuk melihat, mencari, mencetak, atau menghapus data tamu melalui dashboard.
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[WebReinvent](https://webreinvent.com/)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Jump24](https://jump24.co.uk)**
-- **[Redberry](https://redberry.international/laravel/)**
-- **[Active Logic](https://activelogic.com)**
-- **[byte5](https://byte5.de)**
-- **[OP.GG](https://op.gg)**
+---
 
-## Contributing
+## User Interface
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+### Halaman Tamu
 
-## Code of Conduct
+-   Form input sederhana, modern, dan responsif.
+-   Input: Nama, Email, No. Telepon, Keperluan, dan ambil foto via webcam.
+-   Notifikasi sukses/gagal setelah submit.
+-   Tombol login admin tersedia di bawah form.
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+### Halaman Admin
 
-## Security Vulnerabilities
+-   Dashboard dengan tampilan tabel data tamu.
+-   Kolom: No, Foto, Nama, Email, Telepon, Pesan, Tanggal, dan Aksi.
+-   Fitur pencarian data tamu secara real-time.
+-   Filter data berdasarkan rentang tanggal kunjungan.
+-   Tombol cetak data tamu (PDF/print friendly).
+-   Aksi hapus data tamu dengan konfirmasi.
+-   Navigasi sidebar dan header yang modern (menggunakan AdminLTE).
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+### Keamanan & Akses
 
-## License
+-   Hanya admin yang dapat login dan mengakses dashboard.
+-   Data tamu tidak dapat diubah oleh tamu setelah submit.
+-   Validasi data dan proteksi CSRF pada setiap form.
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+---
+
+## Fitur Utama
+
+-   Input data tamu digital dengan foto webcam.
+-   Dashboard admin untuk manajemen data tamu.
+-   Pencarian dan filter data tamu.
+-   Cetak data tamu.
+-   Autentikasi admin.
+-   Tampilan modern dan responsif.
+
+---
