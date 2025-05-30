@@ -76,7 +76,10 @@ Aplikasi ini mendukung proses digitalisasi administrasi tamu, mengurangi penggun
 
 ## Cara instalasi
 
--   composer i
+```bash
+composer i
+```
+
 -   npm i
 -   php artisan migrate
 -   php artisan db:seed
