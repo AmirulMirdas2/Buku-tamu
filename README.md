@@ -103,7 +103,7 @@ php artisan db:seed
 5. run server
 
 ```bash
--   php artisan serve
+php artisan serve
 ```
 
 ---
