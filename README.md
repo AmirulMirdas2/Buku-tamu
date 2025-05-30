@@ -73,3 +73,13 @@ Aplikasi ini mendukung proses digitalisasi administrasi tamu, mengurangi penggun
 -   Tampilan modern dan responsif.
 
 ---
+
+## Cara instalasi
+
+-   composer i
+-   npm i
+-   php artisan migrate
+-   php artisan db:seed
+-   php artisan serve
+
+---
