@@ -1,3 +1,6 @@
+    -   Amirul Mirdas
+    -   2308107010070
+
 ## Deskripsi Website
 
 **Buku Tamu Digital** adalah aplikasi web berbasis Laravel yang dirancang untuk memudahkan pencatatan data tamu secara digital di lingkungan instansi, kantor, sekolah, atau organisasi. Website ini memungkinkan tamu untuk mengisi data diri, keperluan kunjungan, serta mengambil foto secara langsung melalui webcam. Seluruh data yang masuk akan tersimpan secara otomatis ke dalam database dan dapat dikelola oleh admin melalui dashboard yang aman dan mudah digunakan.
