@@ -1,5 +1,5 @@
-    -   Amirul Mirdas
-    -   2308107010070
+-   Amirul Mirdas
+-   2308107010070
 
 ## Deskripsi Website
 
