@@ -92,7 +92,7 @@ input.form-control:focus, textarea.form-control:focus {
     border: none;
 }
 
-/* Gaya gambar di hasil pencarian */
+Gaya gambar di hasil pencarian
 #results img {
     border-radius: 10px;
     border: 2px solid var(--primary);

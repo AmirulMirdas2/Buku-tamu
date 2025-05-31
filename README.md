@@ -106,4 +106,8 @@ php artisan db:seed
 php artisan serve
 ```
 
----
+5. run server
+
+```bash
+php artisan key:generate
+```
